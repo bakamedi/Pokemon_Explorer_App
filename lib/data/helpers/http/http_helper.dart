@@ -61,15 +61,14 @@ class HttpHelper {
         return Either.left(
           Failure.api(
             statusCode: e.response!.statusCode,
-            message: 'Error del servidor',
+            message: 'Error del servidor: ${e.message}',
           ),
         );
       }
 
-      return const Either.left(Failure.network());
+      return Either.left(Failure.network(message: 'Error de red: ${e.message}'));
     } catch (e) {
-
-      return const Either.left(Failure.unknown());
+      return Either.left(Failure.unknown(message: 'Error inesperado: ${e.toString()}'));
     }
   }
 

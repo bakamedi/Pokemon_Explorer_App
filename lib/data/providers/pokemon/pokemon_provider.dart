@@ -16,18 +16,21 @@ class PokemonProvider {
   }) async {
     try {
       final result = await _httpHelper.request(
-        '/$_basePath?limit=$limit&offset=$offset',
+        '$_basePath?limit=$limit&offset=$offset',
+        headers: {
+          'Content-Type': 'application/json',
+        },
         parser: (responseData) {
           return PokemonResponseModel.fromJson(responseData);
         },
       );
 
       return result.fold(
-        (failure) => throw failure,
+        (failure) => .left(failure),
         (response) => .right(response),
       );
     } catch (e) {
-      return .left(.network(message: e.toString()));
+      return .left(.network(message: 'Error en provider: ${e.toString()}'));
     }
   }
 
@@ -36,18 +39,21 @@ class PokemonProvider {
   ) async {
     try {
       final result = await _httpHelper.request(
-        '/$_basePath/$idOrName',
+        '$_basePath/$idOrName',
+        headers: {
+          'Content-Type': 'application/json',
+        },
         parser: (responseData) {
           return PokemonDetailModel.fromJson(responseData);
         },
       );
 
       return result.fold(
-        (failure) => throw failure,
+        (failure) => .left(failure),
         (response) => .right(response),
       );
     } catch (e) {
-      return .left(.network(message: e.toString()));
+      return .left(.network(message: 'Error en provider: ${e.toString()}'));
     }
   }
 }

@@ -79,4 +79,27 @@ El proyecto sigue los principios de **Clean Architecture**, permitiendo una sepa
 - **Pendientes (Extras)**: Por el momento, no se han implementado los puntos extra (Caché local con SharedPreferences, Tests unitarios o Dark mode), priorizando la estabilidad y la arquitectura de las funcionalidades obligatorias.
 
 ---
+# App Images
+
+<div style="display: flex; flex-wrap: wrap; gap: 10px;">
+
+  <img src="assets/images_for_git/splash.png" alt="Demo del splash" width="250"/>
+  <img src="assets/images_for_git/login.png" alt="Demo del login" width="250"/>
+  <img src="assets/images_for_git/home.png" alt="Demo del home" width="250"/>
+  <img src="assets/images_for_git/pokemon_detail.png" alt="Demo del pokemon_detail" width="250"/>
+  <img src="assets/images_for_git/settings.png" alt="Demo del settings" width="250"/>
+  <img src="assets/images_for_git/close_session.png" alt="Demo del close_session" width="250"/>
+
+</div>
+
+# Dark Mode
+
+
+<div style="display: flex; flex-wrap: wrap; gap: 10px;">
+
+  <img src="assets/images_for_git/dark_mode.gif" alt="Demo del completed" width="250"/>
+
+</div>
+
+---
 Desarrollado como parte de una prueba técnica para el rol de Desarrollador Flutter.

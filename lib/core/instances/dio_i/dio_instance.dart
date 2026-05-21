@@ -7,7 +7,7 @@ class DioInstance {
 
   static final dio = Dio(
     BaseOptions(
-      baseUrl: 'https://pokeapi.co/api/v2',
+      baseUrl: 'https://pokeapi.co/api/v2/',
       connectTimeout: _httpTimeout,
       receiveTimeout: _httpTimeout,
       sendTimeout: _httpTimeout,
