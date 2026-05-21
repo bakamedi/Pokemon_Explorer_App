@@ -4,19 +4,26 @@ import 'package:poke_test/data/injects/repositories/app_inject_repositories.dart
 import 'package:poke_test/domain/models/eighter/typedefs.dart';
 import 'package:poke_test/domain/models/failures/failure.dart';
 import 'package:poke_test/domain/repositories/auth/auth_repository.dart';
+import 'package:poke_test/domain/repositories/device/device_repository.dart';
 import 'package:poke_test/presentation/login/controller/login_state.dart';
 
 final loginProvider = Provider.state<LoginController, LoginState>(
   (_) => LoginController(
     LoginState.initialState,
     authRepository: AppInjectRepositories.authRep.read(),
+    deviceRepository: AppInjectRepositories.deviceRep.read(),
   ),
 );
 
 class LoginController extends StateNotifier<LoginState> {
-  LoginController(super.initialState, {required this._authRepository});
+  LoginController(
+    super.initialState, {
+    required this._authRepository,
+    required this._deviceRepository,
+  });
 
   final AuthRepository _authRepository;
+  final DeviceRepository _deviceRepository;
 
   bool get isValid =>
       state.username.trim().isNotEmpty && state.password.trim().isNotEmpty;
@@ -35,5 +42,9 @@ class LoginController extends StateNotifier<LoginState> {
 
   FutureEither<Failure, void> sendLogin() async {
     return await _authRepository.login(state.username, state.password);
+  }
+
+  Future<void> saveDeviceToken(String token) async {
+    await _deviceRepository.write(key: 'device_token', value: token);
   }
 }

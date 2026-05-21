@@ -3,7 +3,6 @@ import 'package:poke_test/data/injects/providers/app_inject_providers.dart';
 import 'package:poke_test/data/repositories_impl/index_repositories_impl.dart';
 import 'package:poke_test/domain/repositories/index_repositories.dart';
 
-
 class AppInjectRepositories {
   const AppInjectRepositories._();
 
@@ -13,11 +12,15 @@ class AppInjectRepositories {
     ),
   );
 
-
   static final pokemonRep = Provider<PokemonRepository>(
     (ref) => PokemonRepositoryImpl(
       pokemonProvider: AppProviderInjects.pokemonProvider.read(),
     ),
   );
 
+  static final deviceRep = Provider<DeviceRepository>(
+    (ref) => DeviceRepositoryImpl(
+      deviceUtilProvider: AppProviderInjects.deviceProvider.read(),
+    ),
+  );
 }

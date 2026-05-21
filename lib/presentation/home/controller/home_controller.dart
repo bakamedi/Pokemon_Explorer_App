@@ -10,15 +10,21 @@ final homeProvider = Provider.state<HomeController, HomeState>((_) {
   return HomeController(
     HomeState.initialState,
     pokemonRepository: AppInjectRepositories.pokemonRep.read(),
+    deviceRepository: AppInjectRepositories.deviceRep.read(),
   );
 });
 
 class HomeController extends StateNotifier<HomeState> {
-  HomeController(super.initialState, {required this._pokemonRepository}) {
+  HomeController(
+    super.initialState, {
+    required this._pokemonRepository,
+    required this._deviceRepository,
+  }) {
     loadPokemons();
   }
 
   final PokemonRepository _pokemonRepository;
+  final DeviceRepository _deviceRepository;
 
   Future<void> loadPokemons() async {
     state = state.copyWith(appViewStateUtil: .loading);
@@ -116,5 +122,11 @@ class HomeController extends StateNotifier<HomeState> {
         );
       },
     );
+  }
+
+  Future<void> closeSession() async {
+    await _deviceRepository.clear();
+    await _deviceRepository.write(key: 'device_token', value: '');
+    await _deviceRepository.delete(key: 'device_token');
   }
 }

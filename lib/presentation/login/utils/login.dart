@@ -10,7 +10,10 @@ void login() async {
   final result = await loginController.sendLogin();
   LoaderUtil.hide();
 
-  result.fold((failure) => failure.showBottomSheet(), (_) {
+  result.fold((failure) => failure.showBottomSheet(), (_) async {
+    await loginController.saveDeviceToken(
+      loginController.state.username + loginController.state.password,
+    );
     RouterUtil.pushReplacement(HomeRoute.path);
   });
 }

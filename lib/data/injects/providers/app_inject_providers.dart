@@ -7,10 +7,13 @@ class AppProviderInjects {
   AppProviderInjects._();
 
   static final authProvider = Provider((_) => AuthProvider());
+
   static final pokemonProvider = Provider(
     (_) => PokemonProvider(
       httpHelper: HttpHelper(dio: DioInstance.dio),
       basePath: 'pokemon',
     ),
   );
+
+  static final deviceProvider = Provider((_) => DeviceUtilProvider());
 }
