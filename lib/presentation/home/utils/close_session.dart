@@ -19,8 +19,8 @@ void closeSession(BuildContext context) {
           mainAxisSize: .min,
           children: [
             Container(
-              width: 40,
-              height: 4,
+              width: 40.rw,
+              height: 4.rh,
               margin: const .only(bottom: 20),
               decoration: BoxDecoration(
                 color: Colors.grey.shade300,
@@ -33,7 +33,7 @@ void closeSession(BuildContext context) {
               size: 44.sp,
               color: AppColors.primaryRed,
             ),
-            const SizedBox(height: 16),
+            16.h,
 
             Text(
               '¿Cerrar Sesión?',
@@ -43,14 +43,14 @@ void closeSession(BuildContext context) {
                 color: Colors.grey.shade900,
               ),
             ),
-            const SizedBox(height: 8),
+            8.h,
 
             Text(
               'Tu progreso actual y las búsquedas locales se mantendrán a salvo.',
               textAlign: TextAlign.center,
               style: TextStyle(color: Colors.grey.shade600, fontSize: 14.sp),
             ),
-            const SizedBox(height: 24),
+            24.h,
 
             // BOTÓN ROJO: ACCIÓN CONFIRMAR CERRAR SESIÓN
             SizedBox(
@@ -76,12 +76,12 @@ void closeSession(BuildContext context) {
                 ),
               ),
             ),
-            const SizedBox(height: 12),
+            12.h,
 
             // BOTÓN BLANCO: ACCIÓN CANCELAR
             SizedBox(
               width: .infinity,
-              height: 48,
+              height: 48.rh,
               child: OutlinedButton(
                 style: OutlinedButton.styleFrom(
                   side: BorderSide(color: Colors.grey.shade300),
