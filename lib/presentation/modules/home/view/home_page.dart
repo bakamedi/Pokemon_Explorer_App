@@ -2,11 +2,11 @@ import 'package:flutter/material.dart';
 import 'package:flutter_meedu/consumer.dart';
 import 'package:poke_test/presentation/globals/common/widgets/app_state_wrapper_gw.dart';
 import 'package:poke_test/presentation/globals/extensions/widgets_ext.dart';
-import 'package:poke_test/presentation/home/controller/home_controller.dart';
-import 'package:poke_test/presentation/home/view/widgets/close_session_w.dart';
-import 'package:poke_test/presentation/home/view/widgets/home_body_w.dart';
-import 'package:poke_test/presentation/home/view/widgets/home_loading_body_w.dart';
-import 'package:poke_test/presentation/home/view/widgets/home_search_w.dart';
+import 'package:poke_test/presentation/modules/home/controller/home_controller.dart';
+import 'package:poke_test/presentation/modules/home/view/widgets/settings_w.dart';
+import 'package:poke_test/presentation/modules/home/view/widgets/home_body_w.dart';
+import 'package:poke_test/presentation/modules/home/view/widgets/home_loading_body_w.dart';
+import 'package:poke_test/presentation/modules/home/view/widgets/home_search_w.dart';
 import 'package:poke_test/theme/app_colors.dart';
 
 class HomePage extends StatelessWidget {
@@ -19,10 +19,7 @@ class HomePage extends StatelessWidget {
       appBar: AppBar(
         title: const Text('Pokémon Explorer App'),
         backgroundColor: AppColors.primaryRed,
-        actions: [
-          CloseSessionW(),
-          const SizedBox(width: 8),
-        ],
+        actions: [const SettingsW(), const SizedBox(width: 8)],
       ),
       body: Consumer(
         builder: (_, ref, _) {
@@ -38,9 +35,13 @@ class HomePage extends StatelessWidget {
                   HomeSearchW(),
                   24.h,
 
-                  Text(
-                    'AVAILABLE POKÉMON (${controller.state.pokemonResponse!.results.length}-${controller.state.pokemonResponse!.count})',
-                    style: TextStyle(fontWeight: .bold, letterSpacing: .5),
+                  Row(
+                    children: [
+                      Text(
+                        'AVAILABLE POKÉMON (${controller.state.pokemonResponse!.results.length}-${controller.state.pokemonResponse!.count})',
+                        style: TextStyle(fontWeight: .bold, letterSpacing: .5),
+                      ),
+                    ],
                   ),
                   16.h,
 

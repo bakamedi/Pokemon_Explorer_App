@@ -6,9 +6,14 @@ class DeviceUtilProvider {
     return prefs.getString(key);
   }
 
-  Future<void> write({required String key, required String value}) async {
+  Future<void> writeString({required String key, required String value}) async {
     final SharedPreferences prefs = await SharedPreferences.getInstance();
     await prefs.setString(key, value);
+  }
+
+  Future<void> writeBool({required String key, required bool value}) async {
+    final SharedPreferences prefs = await SharedPreferences.getInstance();
+    await prefs.setBool(key, value);
   }
 
   Future<void> delete({required String key}) async {

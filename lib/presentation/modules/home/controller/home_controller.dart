@@ -126,7 +126,7 @@ class HomeController extends StateNotifier<HomeState> {
 
   Future<void> closeSession() async {
     await _deviceRepository.clear();
-    await _deviceRepository.write(key: 'device_token', value: '');
+    await _deviceRepository.writeString(key: 'device_token', value: '');
     await _deviceRepository.delete(key: 'device_token');
   }
 }

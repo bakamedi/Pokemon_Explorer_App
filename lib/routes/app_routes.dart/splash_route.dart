@@ -1,5 +1,5 @@
 import 'package:go_router/go_router.dart';
-import 'package:poke_test/presentation/splash/splash_page.dart';
+import 'package:poke_test/presentation/modules/splash/splash_page.dart';
 
 class SplashRoute {
   static const path = '/splash';

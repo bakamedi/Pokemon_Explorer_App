@@ -1,5 +1,5 @@
 import 'package:go_router/go_router.dart';
-import 'package:poke_test/presentation/pokemon_detail/view/pokemon_detail_page.dart';
+import 'package:poke_test/presentation/modules/pokemon_detail/view/pokemon_detail_page.dart';
 
 
 class PokemonDetailRoute {

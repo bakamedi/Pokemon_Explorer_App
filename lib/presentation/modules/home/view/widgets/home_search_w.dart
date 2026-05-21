@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_meedu/consumer.dart';
 import 'package:flutter_meedu/provider/filters.dart';
 import 'package:poke_test/presentation/globals/extensions/responsive_num_ext.dart';
-import 'package:poke_test/presentation/home/controller/home_controller.dart';
+import 'package:poke_test/presentation/modules/home/controller/home_controller.dart';
 
 class HomeSearchW extends StatelessWidget {
   const HomeSearchW({super.key});

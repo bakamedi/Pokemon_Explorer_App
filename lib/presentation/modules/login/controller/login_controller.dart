@@ -5,7 +5,7 @@ import 'package:poke_test/domain/models/eighter/typedefs.dart';
 import 'package:poke_test/domain/models/failures/failure.dart';
 import 'package:poke_test/domain/repositories/auth/auth_repository.dart';
 import 'package:poke_test/domain/repositories/device/device_repository.dart';
-import 'package:poke_test/presentation/login/controller/login_state.dart';
+import 'package:poke_test/presentation/modules/login/controller/login_state.dart';
 
 final loginProvider = Provider.state<LoginController, LoginState>(
   (_) => LoginController(
@@ -45,6 +45,6 @@ class LoginController extends StateNotifier<LoginState> {
   }
 
   Future<void> saveDeviceToken(String token) async {
-    await _deviceRepository.write(key: 'device_token', value: token);
+    await _deviceRepository.writeString(key: 'device_token', value: token);
   }
 }

@@ -3,8 +3,8 @@ import 'package:flutter_meedu/consumer.dart';
 import 'package:poke_test/helpers/assets_image_helper.dart';
 import 'package:poke_test/presentation/globals/extensions/responsive_num_ext.dart';
 import 'package:poke_test/presentation/globals/extensions/widgets_ext.dart';
-import 'package:poke_test/presentation/login/controller/login_controller.dart';
-import 'package:poke_test/presentation/login/utils/login.dart';
+import 'package:poke_test/presentation/modules/login/controller/login_controller.dart';
+import 'package:poke_test/presentation/modules/login/utils/login.dart';
 
 class LoginPage extends StatelessWidget {
   const LoginPage({super.key});

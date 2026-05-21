@@ -12,8 +12,13 @@ class DeviceRepositoryImpl extends DeviceRepository {
   }
 
   @override
-  Future<void> write({required String key, required String value}) async {
-    await _deviceUtilProvider.write(key: key, value: value);
+  Future<void> writeString({required String key, required String value}) async {
+    await _deviceUtilProvider.writeString(key: key, value: value);
+  }
+
+  @override
+  Future<void> writeBool({required String key, required bool value}) async {
+    await _deviceUtilProvider.writeBool(key: key, value: value);
   }
 
   @override

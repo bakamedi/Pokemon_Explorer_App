@@ -4,13 +4,13 @@ import 'package:poke_test/presentation/globals/common/widgets/app_state_wrapper_
 import 'package:poke_test/presentation/globals/extensions/pokemon_detail_model_ext.dart';
 import 'package:poke_test/presentation/globals/extensions/responsive_num_ext.dart';
 import 'package:poke_test/presentation/globals/extensions/widgets_ext.dart';
-import 'package:poke_test/presentation/pokemon_detail/controller/pokemon_detail_controller.dart';
-import 'package:poke_test/presentation/pokemon_detail/view/widgets/pokemon_abilities_w.dart';
-import 'package:poke_test/presentation/pokemon_detail/view/widgets/pokemon_artwork_w.dart';
-import 'package:poke_test/presentation/pokemon_detail/view/widgets/pokemon_base_stats_w.dart';
-import 'package:poke_test/presentation/pokemon_detail/view/widgets/pokemon_detail_loading_page_w.dart';
-import 'package:poke_test/presentation/pokemon_detail/view/widgets/pokemon_dimensions_w.dart';
-import 'package:poke_test/presentation/pokemon_detail/view/widgets/pokemon_types_w.dart';
+import 'package:poke_test/presentation/modules/pokemon_detail/controller/pokemon_detail_controller.dart';
+import 'package:poke_test/presentation/modules/pokemon_detail/view/widgets/pokemon_abilities_w.dart';
+import 'package:poke_test/presentation/modules/pokemon_detail/view/widgets/pokemon_artwork_w.dart';
+import 'package:poke_test/presentation/modules/pokemon_detail/view/widgets/pokemon_base_stats_w.dart';
+import 'package:poke_test/presentation/modules/pokemon_detail/view/widgets/pokemon_detail_loading_page_w.dart';
+import 'package:poke_test/presentation/modules/pokemon_detail/view/widgets/pokemon_dimensions_w.dart';
+import 'package:poke_test/presentation/modules/pokemon_detail/view/widgets/pokemon_types_w.dart';
 
 class PokemonDetailPage extends StatefulWidget {
   const PokemonDetailPage({super.key, required this.pokemonId});

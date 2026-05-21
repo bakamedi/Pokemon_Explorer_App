@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:poke_test/presentation/globals/extensions/widgets_ext.dart';
-import 'package:poke_test/presentation/pokemon_detail/view/widgets/info_card_w.dart';
+import 'package:poke_test/presentation/modules/pokemon_detail/view/widgets/info_card_w.dart';
 
 class PokemonDimensionsW extends StatelessWidget {
   const PokemonDimensionsW({

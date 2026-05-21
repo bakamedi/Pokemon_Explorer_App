@@ -3,9 +3,9 @@ import 'package:flutter_meedu/consumer.dart';
 import 'package:flutter_meedu/provider/filters.dart';
 import 'package:poke_test/domain/responses/pokemon_response_model.dart';
 import 'package:poke_test/presentation/globals/extensions/widgets_ext.dart';
-import 'package:poke_test/presentation/home/controller/home_controller.dart';
-import 'package:poke_test/presentation/home/view/widgets/home_item_w.dart';
-import 'package:poke_test/presentation/home/view/widgets/item_home_loading_w.dart'; // Tu import del Shimmer Grid
+import 'package:poke_test/presentation/modules/home/controller/home_controller.dart';
+import 'package:poke_test/presentation/modules/home/view/widgets/home_item_w.dart';
+import 'package:poke_test/presentation/modules/home/view/widgets/item_home_loading_w.dart'; // Tu import del Shimmer Grid
 
 class HomeBodyW extends ConsumerStatefulWidget {
   const HomeBodyW({super.key, required this.result});

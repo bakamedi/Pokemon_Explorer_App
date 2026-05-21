@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:poke_test/presentation/globals/utils/router_util.dart';
-import 'package:poke_test/presentation/home/controller/home_controller.dart';
+import 'package:poke_test/presentation/modules/home/controller/home_controller.dart';
 import 'package:poke_test/presentation/globals/extensions/responsive_num_ext.dart'; // Para tus extensiones .sp
 import 'package:poke_test/presentation/globals/extensions/widgets_ext.dart'; // Para tu extensión .padding
 import 'package:poke_test/routes/app_routes.dart/login_route.dart';

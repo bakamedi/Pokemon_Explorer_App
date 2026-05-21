@@ -1,5 +1,5 @@
 import 'package:go_router/go_router.dart';
-import 'package:poke_test/presentation/home/view/home_page.dart';
+import 'package:poke_test/presentation/modules/home/view/home_page.dart';
 
 
 class HomeRoute {

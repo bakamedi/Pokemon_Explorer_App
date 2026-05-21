@@ -4,7 +4,7 @@ import 'package:poke_test/presentation/globals/common/widgets/cache_image_gw.dar
 import 'package:poke_test/presentation/globals/extensions/pokemon_model_ext.dart';
 import 'package:poke_test/presentation/globals/extensions/responsive_num_ext.dart';
 import 'package:poke_test/presentation/globals/extensions/widgets_ext.dart';
-import 'package:poke_test/presentation/home/utils/go_to_pokemon.dart';
+import 'package:poke_test/presentation/modules/home/utils/go_to_pokemon.dart';
 
 class ItemHomeW extends StatelessWidget {
   const ItemHomeW({super.key, required this.pokemon});
