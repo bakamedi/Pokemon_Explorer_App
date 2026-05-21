@@ -10,11 +10,9 @@ class AppTheme {
       brightness: .light,
       primaryColor: AppColors.primaryRed,
       scaffoldBackgroundColor: AppColors.lightBackground,
-
       colorScheme: ColorScheme.fromSeed(
         seedColor: AppColors.primaryRed,
-        primary: AppColors
-            .primaryRed,
+        primary: AppColors.primaryRed,
       ),
 
       // Colores generales de texto
@@ -45,11 +43,8 @@ class AppTheme {
       inputDecorationTheme: InputDecorationTheme(
         filled: true,
         fillColor: AppColors.lightInput,
-
         hintStyle: const TextStyle(color: AppColors.lightTextSecondary),
-
         labelStyle: const TextStyle(color: AppColors.lightTextPrimary),
-
         border: OutlineInputBorder(
           borderRadius: BorderRadius.circular(8),
           borderSide: const BorderSide(color: AppColors.lightTextSecondary),
@@ -88,7 +83,7 @@ class AppTheme {
         bodyMedium: TextStyle(color: AppColors.darkTextPrimary),
         titleLarge: TextStyle(
           color: AppColors.darkTextPrimary,
-          fontWeight: FontWeight.bold,
+          fontWeight: .bold,
         ),
       ),
 
@@ -103,7 +98,7 @@ class AppTheme {
       cardTheme: const CardThemeData(
         color: AppColors.darkCard,
         elevation: 1,
-        margin: EdgeInsets.all(8),
+        margin: .all(8),
       ),
 
       // Inputs
