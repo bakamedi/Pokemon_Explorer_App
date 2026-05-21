@@ -7,9 +7,15 @@ class AppTheme {
   // --- TEMA CLARO ---
   static ThemeData get lightTheme {
     return ThemeData(
-      brightness: Brightness.light,
+      brightness: .light,
       primaryColor: AppColors.primaryRed,
       scaffoldBackgroundColor: AppColors.lightBackground,
+
+      colorScheme: ColorScheme.fromSeed(
+        seedColor: AppColors.primaryRed,
+        primary: AppColors
+            .primaryRed,
+      ),
 
       // Colores generales de texto
       textTheme: const TextTheme(
@@ -17,7 +23,7 @@ class AppTheme {
         bodyMedium: TextStyle(color: AppColors.lightTextPrimary),
         titleLarge: TextStyle(
           color: AppColors.lightTextPrimary,
-          fontWeight: FontWeight.bold,
+          fontWeight: .bold,
         ),
       ),
 
@@ -32,7 +38,7 @@ class AppTheme {
       cardTheme: const CardThemeData(
         color: AppColors.lightCard,
         elevation: 2,
-        margin: EdgeInsets.all(8),
+        margin: .all(8),
       ),
 
       // Inputs
@@ -53,10 +59,10 @@ class AppTheme {
       // Botones
       elevatedButtonTheme: ElevatedButtonThemeData(
         style: ElevatedButton.styleFrom(
-          backgroundColor: AppColors.accentBlue,
+          backgroundColor: AppColors.primaryRed,
           foregroundColor: Colors.white,
           minimumSize: const Size.fromHeight(50),
-          shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(8)),
+          shape: RoundedRectangleBorder(borderRadius: .circular(8)),
         ),
       ),
     );
@@ -65,9 +71,16 @@ class AppTheme {
   // --- TEMA OSCURO ---
   static ThemeData get darkTheme {
     return ThemeData(
-      brightness: Brightness.dark,
+      brightness: .dark,
       primaryColor: AppColors.primaryRed,
       scaffoldBackgroundColor: AppColors.darkBackground,
+
+      // SOLUCIÓN: Agregamos explícitamente el brightness para sincronizar el esquema
+      colorScheme: ColorScheme.fromSeed(
+        brightness: Brightness.dark, // <-- ESTA LÍNEA ES LA CLAVE
+        seedColor: AppColors.primaryRed,
+        primary: AppColors.primaryRed,
+      ),
 
       // Colores generales de texto
       textTheme: const TextTheme(
@@ -97,24 +110,26 @@ class AppTheme {
       inputDecorationTheme: InputDecorationTheme(
         filled: true,
         fillColor: AppColors.darkInput,
-
         hintStyle: const TextStyle(color: AppColors.darkTextSecondary),
-
         labelStyle: const TextStyle(color: AppColors.darkTextPrimary),
 
         border: OutlineInputBorder(
-          borderRadius: BorderRadius.circular(8),
+          borderRadius: .circular(8),
           borderSide: const BorderSide(color: AppColors.darkInput),
+        ),
+        focusedBorder: OutlineInputBorder(
+          borderRadius: .circular(8),
+          borderSide: const BorderSide(color: AppColors.primaryRed, width: 2),
         ),
       ),
 
       // Botones
       elevatedButtonTheme: ElevatedButtonThemeData(
         style: ElevatedButton.styleFrom(
-          backgroundColor: AppColors.accentBlue,
+          backgroundColor: AppColors.primaryRed,
           foregroundColor: Colors.white,
           minimumSize: const Size.fromHeight(50),
-          shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(8)),
+          shape: RoundedRectangleBorder(borderRadius: .circular(8)),
         ),
       ),
     );
