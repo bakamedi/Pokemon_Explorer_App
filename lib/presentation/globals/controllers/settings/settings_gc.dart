@@ -20,7 +20,9 @@ class SettingsGC extends StateNotifier<SettingsState> {
   final DeviceRepository _deviceRepository;
 
   void onInit(BuildContext context) async {
-    bool isDarkMode = MediaQuery.of(context).platformBrightness == .dark;
+    final isDarkMode = await _deviceRepository.readBool(
+      key: 'is_dark_mode',
+    ) ?? false;
 
     state = state.copyWith(isDarkMode: isDarkMode);
 

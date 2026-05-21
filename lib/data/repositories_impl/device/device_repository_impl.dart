@@ -7,8 +7,8 @@ class DeviceRepositoryImpl extends DeviceRepository {
   final DeviceUtilProvider _deviceUtilProvider;
 
   @override
-  Future<String?> read({required String key}) async {
-    return await _deviceUtilProvider.read(key: key);
+  Future<String?> readString({required String key}) async {
+    return await _deviceUtilProvider.readString(key: key);
   }
 
   @override
@@ -29,5 +29,10 @@ class DeviceRepositoryImpl extends DeviceRepository {
   @override
   Future<void> delete({required String key}) async {
     await _deviceUtilProvider.delete(key: key);
+  }
+  
+  @override
+  Future<bool?> readBool({required String key}) async {
+    return await _deviceUtilProvider.readBool(key: key);
   }
 }

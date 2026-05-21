@@ -1,4 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_meedu/consumer.dart';
+import 'package:flutter_meedu/provider/filters.dart';
+import 'package:poke_test/presentation/globals/controllers/settings/settings_gc.dart';
+import 'package:poke_test/presentation/globals/extensions/responsive_num_ext.dart';
+import 'package:poke_test/presentation/globals/extensions/widgets_ext.dart';
 import 'package:shimmer/shimmer.dart';
 
 class ItemHomeLoadingW extends StatelessWidget {
@@ -6,43 +11,57 @@ class ItemHomeLoadingW extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Shimmer.fromColors(
-      // Tonos grises suaves ideales para fondos claros
-      baseColor: Colors.grey.shade300,
-      highlightColor: Colors.grey.shade100,
-      child: Container(
-        decoration: BoxDecoration(
-          color: Colors.white,
-          borderRadius: .circular(20), // Mismo radio que tu tarjeta real
-        ),
-        padding: const .all(16),
-        child: Column(
-          crossAxisAlignment: .start,
-          children: [
-            // Esqueleto del contenedor de la imagen
-            Container(
-              width: .infinity,
-              height: 100,
-              decoration: BoxDecoration(
-                color: Colors.white,
-                borderRadius: .circular(16),
-              ),
-            ),
+    return Consumer(
+      builder: (_, ref, _) {
+        final isDarkMode = ref.select(settingsGP.select((s) => s.isDarkMode));
 
-            const SizedBox(height: 16),
+        final baseColor = isDarkMode
+            ? Colors.grey.shade800
+            : Colors.grey.shade300;
 
-            // Esqueleto de la línea de texto del nombre del Pokémon
-            Container(
-              width: 100,
-              height: 15,
-              decoration: BoxDecoration(
-                color: Colors.white,
-                borderRadius: .circular(4),
-              ),
+        final highlightColor = isDarkMode
+            ? Colors.grey.shade700
+            : Colors.grey.shade100;
+
+        final skeletonColor = isDarkMode ? Colors.grey.shade900 : Colors.white;
+
+        return Shimmer.fromColors(
+          baseColor: baseColor,
+          highlightColor: highlightColor,
+          child: Container(
+            decoration: BoxDecoration(
+              color: skeletonColor,
+              borderRadius: .circular(20),
             ),
-          ],
-        ),
-      ),
+            padding: const .all(16),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                // Esqueleto del contenedor de la imagen
+                Container(
+                  width: double.infinity,
+                  height: 100.rh,
+                  decoration: BoxDecoration(
+                    color: skeletonColor,
+                    borderRadius: .circular(16),
+                  ),
+                ),
+
+                16.h,
+
+                Container(
+                  width: 100.rw,
+                  height: 15.rh,
+                  decoration: BoxDecoration(
+                    color: skeletonColor,
+                    borderRadius: .circular(4),
+                  ),
+                ),
+              ],
+            ),
+          ),
+        );
+      },
     );
   }
 }

@@ -22,7 +22,7 @@ class SplashController extends StateNotifier<SplashState> {
 
   void _init() async {
     final responses = await Future.wait([
-      _deviceRepository.read(key: 'device_token'),
+      _deviceRepository.readString(key: 'device_token'),
       Future.delayed(const Duration(seconds: 2)),
     ]);
     final result = responses.first;
