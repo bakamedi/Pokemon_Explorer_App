@@ -1,19 +1,24 @@
 import 'package:flutter/material.dart';
 import 'package:poke_test/domain/models/pokemon_detail_model.dart';
+import 'package:poke_test/theme/app_colors.dart';
 
 class PokemonAbilitiesW extends StatelessWidget {
-  const PokemonAbilitiesW({super.key, required this.abilities});
+  const PokemonAbilitiesW({
+    super.key,
+    required this.abilities,
+    required this.isDarkMode,
+  });
 
   final List<AbilitySlot> abilities;
+  final bool isDarkMode;
 
   @override
   Widget build(BuildContext context) {
     return Column(
-crossAxisAlignment: .start,
+      crossAxisAlignment: .start,
       spacing: 8,
       children: [
-        // --- SECCIÓN DE HABILIDADES ---
-        const Text(
+        Text(
           'ABILITIES',
           style: TextStyle(
             fontWeight: .bold,
@@ -28,7 +33,7 @@ crossAxisAlignment: .start,
             return Container(
               padding: const .symmetric(horizontal: 12, vertical: 8),
               decoration: BoxDecoration(
-                color: Colors.white,
+                color: isDarkMode ? AppColors.darkInput : Colors.white,
                 borderRadius: .circular(10),
                 border: .all(color: Colors.grey.shade200),
               ),
@@ -37,7 +42,9 @@ crossAxisAlignment: .start,
                 style: TextStyle(
                   fontSize: 13,
                   fontWeight: .w600,
-                  color: abilitySlot.isHidden
+                  color: isDarkMode
+                      ? Colors.white
+                      : abilitySlot.isHidden
                       ? Colors.blueGrey
                       : Colors.black87,
                 ),

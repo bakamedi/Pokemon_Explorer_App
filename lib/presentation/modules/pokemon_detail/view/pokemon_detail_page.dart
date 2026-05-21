@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_meedu/consumer.dart';
+import 'package:flutter_meedu/provider/filters.dart';
 import 'package:poke_test/presentation/globals/common/widgets/app_state_wrapper_gw.dart';
+import 'package:poke_test/presentation/globals/controllers/settings/settings_gc.dart';
 import 'package:poke_test/presentation/globals/extensions/pokemon_detail_model_ext.dart';
 import 'package:poke_test/presentation/globals/extensions/responsive_num_ext.dart';
 import 'package:poke_test/presentation/globals/extensions/widgets_ext.dart';
@@ -11,6 +13,7 @@ import 'package:poke_test/presentation/modules/pokemon_detail/view/widgets/pokem
 import 'package:poke_test/presentation/modules/pokemon_detail/view/widgets/pokemon_detail_loading_page_w.dart';
 import 'package:poke_test/presentation/modules/pokemon_detail/view/widgets/pokemon_dimensions_w.dart';
 import 'package:poke_test/presentation/modules/pokemon_detail/view/widgets/pokemon_types_w.dart';
+import 'package:poke_test/theme/app_colors.dart';
 
 class PokemonDetailPage extends StatefulWidget {
   const PokemonDetailPage({super.key, required this.pokemonId});
@@ -38,6 +41,7 @@ class _PokemonDetailPageState extends State<PokemonDetailPage> {
       body: Consumer(
         builder: (_, ref, _) {
           final controller = ref.watch(pokemonDetailProvider);
+          final isDarkMode = ref.select(settingsGP.select((s) => s.isDarkMode));
 
           return AppStateWrapperGW(
             appViewStateUtil: controller.state.appViewStateUtil,
@@ -50,15 +54,19 @@ class _PokemonDetailPageState extends State<PokemonDetailPage> {
               }
 
               return Scaffold(
-                backgroundColor: Colors.grey.shade50,
+                backgroundColor: isDarkMode
+                    ? AppColors.darkBackground
+                    : AppColors.lightBackground,
                 appBar: AppBar(
                   title: Text(
                     '${pokemon.name.toUpperCase()} ${pokemon.formattedId}',
                     style: TextStyle(fontWeight: .bold, fontSize: 18.sp),
                   ),
                   centerTitle: true,
-                  backgroundColor: Colors.white,
-                  foregroundColor: Colors.black,
+                  backgroundColor: isDarkMode
+                      ? AppColors.darkBackground
+                      : Colors.grey[100],
+                  foregroundColor: isDarkMode ? Colors.white : Colors.black,
                   elevation: 0,
                 ),
                 body: SingleChildScrollView(
@@ -67,14 +75,21 @@ class _PokemonDetailPageState extends State<PokemonDetailPage> {
                     spacing: 24,
                     crossAxisAlignment: .start,
                     children: [
-                      PokemonArtworkW(pokemon: pokemon),
+                      PokemonArtworkW(pokemon: pokemon, isDarkMode: isDarkMode),
                       PokemonTypesW(types: pokemon.types),
                       PokemonDimensionsW(
                         weightInKg: pokemon.weightInKg,
                         heightInM: pokemon.heightInM,
+                        isDarkMode: isDarkMode,
                       ),
-                      PokemonAbilitiesW(abilities: pokemon.abilities),
-                      PokemonBaseStatsW(stats: pokemon.stats),
+                      PokemonAbilitiesW(
+                        abilities: pokemon.abilities,
+                        isDarkMode: isDarkMode,
+                      ),
+                      PokemonBaseStatsW(
+                        stats: pokemon.stats,
+                        isDarkMode: isDarkMode,
+                      ),
                       20.h,
                     ],
                   ),

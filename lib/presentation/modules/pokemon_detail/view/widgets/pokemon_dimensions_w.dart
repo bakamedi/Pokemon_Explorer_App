@@ -7,10 +7,13 @@ class PokemonDimensionsW extends StatelessWidget {
     super.key,
     required this.weightInKg,
     required this.heightInM,
+    required this.isDarkMode,
   });
 
   final String weightInKg;
   final String heightInM;
+
+  final bool isDarkMode;
 
   @override
   Widget build(BuildContext context) {
@@ -20,12 +23,14 @@ class PokemonDimensionsW extends StatelessWidget {
           icon: Icons.scale_outlined,
           title: 'WEIGHT',
           value: weightInKg,
+          isDarkMode: isDarkMode,
         ),
         16.w,
         InfoCardW(
           icon: Icons.height_outlined,
           title: 'HEIGHT',
           value: heightInM,
+          isDarkMode: isDarkMode,
         ),
       ],
     );

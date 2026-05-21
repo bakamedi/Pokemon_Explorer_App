@@ -20,11 +20,11 @@ class SettingsGC extends StateNotifier<SettingsState> {
   final DeviceRepository _deviceRepository;
 
   void onInit(BuildContext context) async {
-    final theme = Theme.of(context);
-    final isDark = theme.brightness == .dark;
+    bool isDarkMode = MediaQuery.of(context).platformBrightness == .dark;
 
-    state = state.copyWith(isDarkMode: isDark);
-    await _deviceRepository.writeBool(key: 'is_dark_mode', value: isDark);
+    state = state.copyWith(isDarkMode: isDarkMode);
+
+    await _deviceRepository.writeBool(key: 'is_dark_mode', value: isDarkMode);
   }
 
   void toggleDarkMode() async {

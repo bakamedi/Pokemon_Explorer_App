@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:poke_test/presentation/globals/extensions/responsive_num_ext.dart';
 import 'package:poke_test/presentation/globals/extensions/widgets_ext.dart';
+import 'package:poke_test/theme/app_colors.dart';
 
 class InfoCardW extends StatelessWidget {
   const InfoCardW({
@@ -8,18 +9,20 @@ class InfoCardW extends StatelessWidget {
     required this.icon,
     required this.title,
     required this.value,
+    required this.isDarkMode,
   });
 
   final IconData icon;
   final String title;
   final String value;
+  final bool isDarkMode;
 
   @override
   Widget build(BuildContext context) {
     return Container(
       padding: const .all(16),
       decoration: BoxDecoration(
-        color: Colors.white,
+        color: isDarkMode ? AppColors.darkInput : Colors.purple.shade50,
         borderRadius: .circular(16),
         border: .all(color: Colors.grey.shade100),
       ),
@@ -41,7 +44,11 @@ class InfoCardW extends StatelessWidget {
               4.h,
               Text(
                 value,
-                style: TextStyle(fontSize: 15.sp, fontWeight: .bold),
+                style: TextStyle(
+                  color: isDarkMode ? Colors.white : Colors.black,
+                  fontSize: 15.sp,
+                  fontWeight: .bold,
+                ),
               ),
             ],
           ),

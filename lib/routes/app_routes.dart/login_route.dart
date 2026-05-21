@@ -1,5 +1,5 @@
 import 'package:go_router/go_router.dart';
-import 'package:poke_test/presentation/modules/login/login_page.dart';
+import 'package:poke_test/presentation/modules/login/view/login_page.dart';
 
 
 class LoginRoute {
