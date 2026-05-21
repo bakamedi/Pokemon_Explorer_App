@@ -54,7 +54,7 @@ class HomePage extends StatelessWidget {
                         style: TextStyle(
                           color: isDarkMode
                               ? AppColors.darkTextPrimary
-                              : AppColors.lightCard,
+                              : Colors.black,
                           fontWeight: .bold,
                           letterSpacing: .5,
                         ),
