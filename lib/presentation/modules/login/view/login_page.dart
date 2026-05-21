@@ -14,7 +14,6 @@ class LoginPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    // 1. Ponemos el Consumer en el TOP de la página
     return Consumer(
       builder: (_, ref, _) {
         final loginController = ref.watch(loginProvider);
