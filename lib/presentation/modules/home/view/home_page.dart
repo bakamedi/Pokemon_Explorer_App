@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_meedu/consumer.dart';
+import 'package:flutter_meedu/provider/filters.dart';
 import 'package:poke_test/presentation/globals/common/widgets/app_state_wrapper_gw.dart';
+import 'package:poke_test/presentation/globals/controllers/settings/settings_gc.dart';
 import 'package:poke_test/presentation/globals/extensions/widgets_ext.dart';
 import 'package:poke_test/presentation/modules/home/controller/home_controller.dart';
 import 'package:poke_test/presentation/modules/home/view/widgets/settings_w.dart';
@@ -14,55 +16,73 @@ class HomePage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      backgroundColor: Colors.grey[100],
-      appBar: AppBar(
-        title: const Text('Pokémon Explorer App'),
-        backgroundColor: AppColors.primaryRed,
-        actions: [const SettingsW(), const SizedBox(width: 8)],
-      ),
-      body: Consumer(
-        builder: (_, ref, _) {
-          final controller = ref.watch(homeProvider);
+    return Consumer(
+      builder: (_, ref, _) {
+        final isDarkMode = ref.select(settingsGP.select((s) => s.isDarkMode));
+        final controller = ref.watch(homeProvider);
+        final pokemonState = controller.state;
 
-          return AppStateWrapperGW(
-            appViewStateUtil: controller.state.appViewStateUtil,
+        return Scaffold(
+          backgroundColor: isDarkMode
+              ? AppColors.darkBackground
+              : Colors.grey[100],
+          appBar: AppBar(
+            title: const Text('Pokémon Explorer App'),
+            backgroundColor: isDarkMode
+                ? AppColors.darkHeader
+                : AppColors.primaryRed,
+            actions: [const SettingsW(), 8.h],
+          ),
+          body: AppStateWrapperGW(
+            appViewStateUtil: pokemonState.appViewStateUtil,
             loadingWidget: const HomeLoadingBodyW(),
             onSuccess: (context) {
+              final resultsLength =
+                  pokemonState.pokemonResponse?.results.length ?? 0;
+              final totalCount = pokemonState.pokemonResponse?.count ?? 0;
+
               return Column(
                 crossAxisAlignment: .start,
                 children: [
-                  HomeSearchW(),
+                  const HomeSearchW(),
                   24.h,
 
                   Row(
                     children: [
                       Text(
-                        'AVAILABLE POKÉMON (${controller.state.pokemonResponse!.results.length}-${controller.state.pokemonResponse!.count})',
-                        style: TextStyle(fontWeight: .bold, letterSpacing: .5),
+                        'AVAILABLE POKÉMON ($resultsLength-$totalCount)',
+                        style: TextStyle(
+                          color: isDarkMode
+                              ? AppColors.darkTextPrimary
+                              : AppColors.lightCard,
+                          fontWeight: .bold,
+                          letterSpacing: .5,
+                        ),
                       ),
                     ],
                   ),
                   16.h,
 
-                  if (controller.state.pokemonResponse != null)
-                    if (controller.state.searchResult != null &&
-                        controller.state.searchResult!.isNotEmpty)
-                      HomeBodyW(result: controller.state.searchResult)
+                  // Renderizado condicional limpio de la grilla filtrada o paginada
+                  if (pokemonState.pokemonResponse != null)
+                    if (pokemonState.searchResult != null &&
+                        pokemonState.searchResult!.isNotEmpty)
+                      HomeBodyW(result: pokemonState.searchResult)
                     else
-                      HomeBodyW(
-                        result: controller.state.pokemonResponse!.results,
-                      )
+                      HomeBodyW(result: pokemonState.pokemonResponse!.results)
                   else
                     const SizedBox.shrink(),
                 ],
               ).padding(
-                const .symmetric(horizontal: 16, vertical: 16),
-              ); // Corregido .symmetric
+                const .symmetric(
+                  horizontal: 16,
+                  vertical: 16,
+                ), // Corregido .symmetric
+              );
             },
-          );
-        },
-      ),
+          ),
+        );
+      },
     );
   }
 }
