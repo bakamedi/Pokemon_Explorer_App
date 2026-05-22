@@ -7,7 +7,9 @@ import 'package:poke_test/presentation/globals/controllers/settings/settings_gc.
 import 'package:poke_test/presentation/globals/extensions/pokemon_model_ext.dart';
 import 'package:poke_test/presentation/globals/extensions/responsive_num_ext.dart';
 import 'package:poke_test/presentation/globals/extensions/widgets_ext.dart';
+import 'package:poke_test/presentation/modules/home/controller/home_controller.dart';
 import 'package:poke_test/presentation/modules/home/utils/go_to_pokemon.dart';
+import 'package:poke_test/presentation/modules/home/view/widgets/home_favorite_w.dart';
 import 'package:poke_test/theme/app_colors.dart';
 
 class ItemHomeW extends StatelessWidget {
@@ -20,6 +22,11 @@ class ItemHomeW extends StatelessWidget {
     return Consumer(
       builder: (_, ref, _) {
         final isDarkMode = ref.select(settingsGP.select((s) => s.isDarkMode));
+        final isFavorite = ref.select(
+          homeProvider.select(
+            (s) => s.favorites.any((p) => p.name == pokemon.name),
+          ),
+        );
 
         return GestureDetector(
           onTap: () => goToPokemon(pokemon.pokemonId),
@@ -58,6 +65,13 @@ class ItemHomeW extends StatelessWidget {
                       ),
                     ),
 
+                    HomeFavoriteW(
+                      isFavorite: isFavorite,
+                      isDarkMode: isDarkMode,
+                      onTap: () {
+                        homeProvider.read().toggleFavorite(pokemon);
+                      },
+                    ),
                     Positioned(
                       top: 8,
                       right: 8,

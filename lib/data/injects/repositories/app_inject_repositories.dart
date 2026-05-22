@@ -15,6 +15,7 @@ class AppInjectRepositories {
   static final pokemonRep = Provider<PokemonRepository>(
     (ref) => PokemonRepositoryImpl(
       pokemonProvider: AppProviderInjects.pokemonProvider.read(),
+      deviceRepository: AppInjectRepositories.deviceRep.read(),
     ),
   );
 

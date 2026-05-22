@@ -13,6 +13,8 @@ import 'package:poke_test/presentation/modules/pokemon_detail/view/widgets/pokem
 import 'package:poke_test/presentation/modules/pokemon_detail/view/widgets/pokemon_detail_loading_page_w.dart';
 import 'package:poke_test/presentation/modules/pokemon_detail/view/widgets/pokemon_dimensions_w.dart';
 import 'package:poke_test/presentation/modules/pokemon_detail/view/widgets/pokemon_types_w.dart';
+import 'package:poke_test/domain/responses/pokemon_response_model.dart';
+import 'package:poke_test/presentation/modules/home/controller/home_controller.dart';
 import 'package:poke_test/theme/app_colors.dart';
 
 class PokemonDetailPage extends StatefulWidget {
@@ -53,6 +55,12 @@ class _PokemonDetailPageState extends State<PokemonDetailPage> {
                 return Text('No se encontraron detalles del pokemon.').center;
               }
 
+              final isFavorite = ref.select(
+                homeProvider.select(
+                  (s) => s.favorites.any((p) => p.name == pokemon.name),
+                ),
+              );
+
               return Scaffold(
                 backgroundColor: isDarkMode
                     ? AppColors.darkBackground
@@ -68,6 +76,26 @@ class _PokemonDetailPageState extends State<PokemonDetailPage> {
                       : Colors.grey[100],
                   foregroundColor: isDarkMode ? Colors.white : Colors.black,
                   elevation: 0,
+                  actions: [
+                    IconButton(
+                      icon: Icon(
+                        isFavorite ? Icons.star : Icons.star_border,
+                        color: isFavorite
+                            ? Colors.amber
+                            : (isDarkMode
+                                ? Colors.white70
+                                : Colors.black87),
+                      ),
+                      onPressed: () {
+                        final pokemonModel = PokemonModel(
+                          name: pokemon.name,
+                          url:
+                              'https://pokeapi.co/api/v2/pokemon/${pokemon.id}/',
+                        );
+                        homeProvider.read().toggleFavorite(pokemonModel);
+                      },
+                    ),
+                  ],
                 ),
                 body: SingleChildScrollView(
                   padding: const .all(20),

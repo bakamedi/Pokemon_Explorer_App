@@ -31,6 +31,8 @@ void main() {
           next: null,
           previous: null,
         )));
+    when(() => mockPokemonRepository.getFavorites())
+        .thenAnswer((_) async => []);
 
     homeController = HomeController(
       HomeState.initialState,
@@ -310,22 +312,87 @@ void main() {
   });
 
   group('HomeController - closeSession', () {
-    test('Should call deviceRepository clear, writeString and delete', () async {
+    test('Should call deviceRepository clear, writeString and delete',
+        () async {
       // Arrange
       when(() => mockDeviceRepository.clear()).thenAnswer((_) async => {});
       when(() => mockDeviceRepository.writeString(
             key: any(named: 'key'),
             value: any(named: 'value'),
           )).thenAnswer((_) async => {});
-      when(() => mockDeviceRepository.delete(key: any(named: 'key'))).thenAnswer((_) async => {});
+      when(() => mockDeviceRepository.delete(key: any(named: 'key')))
+          .thenAnswer((_) async => {});
 
       // Act
       await homeController.closeSession();
 
       // Assert
       verify(() => mockDeviceRepository.clear()).called(1);
-      verify(() => mockDeviceRepository.writeString(key: 'device_token', value: '')).called(1);
+      verify(() =>
+              mockDeviceRepository.writeString(
+                  key: 'device_token', value: ''))
+          .called(1);
       verify(() => mockDeviceRepository.delete(key: 'device_token')).called(1);
+    });
+  });
+
+  group('HomeController - Favorites', () {
+    test('Should load favorites successfully and update state', () async {
+      // Arrange
+      final mockFavs = [
+        PokemonModel(
+            name: 'pikachu', url: 'https://pokeapi.co/api/v2/pokemon/25/'),
+      ];
+      when(() => mockPokemonRepository.getFavorites())
+          .thenAnswer((_) async => mockFavs);
+
+      // Act
+      clearInteractions(mockPokemonRepository);
+      await homeController.loadFavorites();
+
+      // Assert
+      expect(homeController.state.favorites, mockFavs);
+      verify(() => mockPokemonRepository.getFavorites()).called(1);
+    });
+
+    test('Should call addFavorite when toggling a pokemon that is not favorite',
+        () async {
+      // Arrange
+      final pokemon = PokemonModel(name: 'charmander', url: 'url');
+      homeController.state = homeController.state.copyWith(favorites: []);
+      when(() => mockPokemonRepository.addFavorite(pokemon))
+          .thenAnswer((_) async => {});
+      when(() => mockPokemonRepository.getFavorites())
+          .thenAnswer((_) async => [pokemon]);
+
+      // Act
+      await homeController.toggleFavorite(pokemon);
+
+      // Assert
+      verify(() => mockPokemonRepository.addFavorite(pokemon)).called(1);
+      verifyNever(() => mockPokemonRepository.removeFavorite(pokemon));
+      expect(homeController.state.favorites, [pokemon]);
+    });
+
+    test(
+        'Should call removeFavorite when toggling a pokemon that is already favorite',
+        () async {
+      // Arrange
+      final pokemon = PokemonModel(name: 'charmander', url: 'url');
+      homeController.state =
+          homeController.state.copyWith(favorites: [pokemon]);
+      when(() => mockPokemonRepository.removeFavorite(pokemon))
+          .thenAnswer((_) async => {});
+      when(() => mockPokemonRepository.getFavorites())
+          .thenAnswer((_) async => []);
+
+      // Act
+      await homeController.toggleFavorite(pokemon);
+
+      // Assert
+      verify(() => mockPokemonRepository.removeFavorite(pokemon)).called(1);
+      verifyNever(() => mockPokemonRepository.addFavorite(pokemon));
+      expect(homeController.state.favorites, isEmpty);
     });
   });
 }

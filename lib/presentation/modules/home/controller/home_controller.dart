@@ -21,6 +21,7 @@ class HomeController extends StateNotifier<HomeState> {
     required this._deviceRepository,
   }) {
     loadPokemons();
+    loadFavorites();
   }
 
   final PokemonRepository _pokemonRepository;
@@ -122,6 +123,21 @@ class HomeController extends StateNotifier<HomeState> {
         );
       },
     );
+  }
+
+  Future<void> loadFavorites() async {
+    final favorites = await _pokemonRepository.getFavorites();
+    state = state.copyWith(favorites: favorites);
+  }
+
+  Future<void> toggleFavorite(PokemonModel pokemon) async {
+    final isFav = state.favorites.any((p) => p.name == pokemon.name);
+    if (isFav) {
+      await _pokemonRepository.removeFavorite(pokemon);
+    } else {
+      await _pokemonRepository.addFavorite(pokemon);
+    }
+    await loadFavorites();
   }
 
   Future<void> closeSession() async {

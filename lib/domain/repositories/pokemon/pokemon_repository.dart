@@ -9,4 +9,7 @@ abstract class PokemonRepository {
     int offset = 0,
   });
   FutureEither<Failure, PokemonDetailModel> fetchPokemonDetail(String idOrName);
+  Future<List<PokemonModel>> getFavorites();
+  Future<void> addFavorite(PokemonModel pokemon);
+  Future<void> removeFavorite(PokemonModel pokemon);
 }
