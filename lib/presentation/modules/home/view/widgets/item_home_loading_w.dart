@@ -35,15 +35,16 @@ class ItemHomeLoadingW extends StatelessWidget {
             ),
             padding: const .all(12),
             child: Column(
-              crossAxisAlignment: .start,
+              crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 // Esqueleto del contenedor de la imagen
-                Container(
-                  width: .infinity,
-                  height: 100.rh,
-                  decoration: BoxDecoration(
-                    color: skeletonColor,
-                    borderRadius: .circular(16),
+                Expanded(
+                  child: Container(
+                    width: double.infinity,
+                    decoration: BoxDecoration(
+                      color: skeletonColor,
+                      borderRadius: .circular(16),
+                    ),
                   ),
                 ),
 

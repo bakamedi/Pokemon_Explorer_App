@@ -89,9 +89,9 @@ class _PokemonDetailPageState extends State<PokemonDetailPage> {
                   ],
                 ),
                 body: SingleChildScrollView(
-                  padding: const .all(20),
+                  padding: .symmetric(horizontal: 20.rw, vertical: 20.rh),
                   child: Column(
-                    spacing: 24,
+                    spacing: 24.rh,
                     crossAxisAlignment: .start,
                     children: [
                       PokemonArtworkW(pokemon: pokemon, isDarkMode: isDarkMode),
@@ -109,7 +109,7 @@ class _PokemonDetailPageState extends State<PokemonDetailPage> {
                         stats: pokemon.stats,
                         isDarkMode: isDarkMode,
                       ),
-                      20.h,
+                      20.rh.h,
                     ],
                   ),
                 ),

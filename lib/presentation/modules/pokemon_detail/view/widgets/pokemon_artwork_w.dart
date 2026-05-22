@@ -20,7 +20,7 @@ class PokemonArtworkW extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       width: .infinity,
-      height: 200,
+      height: 200.rh,
       decoration: BoxDecoration(
         color: isDarkMode ? AppColors.darkInput : Colors.purple.shade50,
         borderRadius: .circular(24),
@@ -29,8 +29,8 @@ class PokemonArtworkW extends StatelessWidget {
       child: CacheImageGW(
         imageUrl: pokemon.imageUrl,
         fit: .contain,
-        width: 100.rw,
-        height: 100.rh,
+        width: .infinity,
+        height: .infinity,
       ),
     ).center;
   }

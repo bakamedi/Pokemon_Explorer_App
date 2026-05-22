@@ -50,7 +50,7 @@ class ItemHomeW extends StatelessWidget {
                   children: [
                     Container(
                       width: .infinity,
-                      height: 100,
+                      height: .infinity,
                       decoration: BoxDecoration(
                         color: isDarkMode
                             ? AppColors.darkInput
@@ -59,12 +59,11 @@ class ItemHomeW extends StatelessWidget {
                       ),
                       child: CacheImageGW(
                         imageUrl: pokemon.imageUrl,
-                        width: 400.rw,
-                        height: 400.rh,
+                        width: .infinity,
+                        height: .infinity,
                         fit: .contain,
                       ),
                     ),
-
                     HomeFavoriteW(
                       isFavorite: isFavorite,
                       isDarkMode: isDarkMode,
@@ -80,13 +79,13 @@ class ItemHomeW extends StatelessWidget {
                         decoration: BoxDecoration(
                           color: isDarkMode
                               ? AppColors.darkTextSecondary
-                              : Colors.black.withValues(alpha: .08),
+                              : Colors.black.withValues(alpha: 0.08),
                           borderRadius: .circular(12),
                         ),
                         child: Text(
                           pokemon.pokemonNumber,
                           style: TextStyle(
-                            fontSize: 11.sp,
+                            fontSize: 11,
                             fontWeight: .bold,
                             color: isDarkMode
                                 ? AppColors.darkTextPrimary
@@ -96,7 +95,7 @@ class ItemHomeW extends StatelessWidget {
                       ),
                     ),
                   ],
-                ),
+                ).expanded,
 
                 10.h,
 

@@ -20,16 +20,16 @@ class InfoCardW extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      padding: const .all(16),
+      padding: .symmetric(horizontal: 16.rw, vertical: 16.rh),
       decoration: BoxDecoration(
         color: isDarkMode ? AppColors.darkInput : Colors.purple.shade50,
-        borderRadius: .circular(16),
+        borderRadius: .circular(16.rw),
         border: .all(color: Colors.grey.shade100),
       ),
       child: Row(
         children: [
           Icon(icon, color: Colors.deepPurpleAccent, size: 28.sp),
-          12.w,
+          12.rw.w,
           Column(
             crossAxisAlignment: .start,
             children: [
@@ -41,7 +41,7 @@ class InfoCardW extends StatelessWidget {
                   fontWeight: .bold,
                 ),
               ),
-              4.h,
+              4.rh.h,
               Text(
                 value,
                 style: TextStyle(
