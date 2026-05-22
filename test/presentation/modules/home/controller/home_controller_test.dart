@@ -394,5 +394,52 @@ void main() {
       verifyNever(() => mockPokemonRepository.addFavorite(pokemon));
       expect(homeController.state.favorites, isEmpty);
     });
+
+    test('Should toggle showFavoritesOnly and reset search state', () {
+      // Arrange
+      homeController.state = homeController.state.copyWith(
+        showFavoritesOnly: false,
+        search: 'pikachu',
+        searchResult: [PokemonModel(name: 'pikachu', url: 'url')],
+      );
+
+      // Act
+      homeController.toggleShowFavoritesOnly();
+
+      // Assert
+      expect(homeController.state.showFavoritesOnly, true);
+      expect(homeController.state.search, isEmpty);
+      expect(homeController.state.searchResult, isNull);
+
+      // Act back
+      homeController.toggleShowFavoritesOnly();
+
+      // Assert back
+      expect(homeController.state.showFavoritesOnly, false);
+    });
+
+    test('Should filter favorites locally when showFavoritesOnly is true and query is changed', () {
+      // Arrange
+      final pokemon1 = PokemonModel(name: 'pikachu', url: 'url');
+      final pokemon2 = PokemonModel(name: 'charmander', url: 'url');
+      homeController.state = homeController.state.copyWith(
+        showFavoritesOnly: true,
+        favorites: [pokemon1, pokemon2],
+        search: '',
+        searchResult: null,
+      );
+
+      // Act
+      homeController.onSearchChanged('pika');
+
+      // Assert
+      expect(homeController.state.searchResult, [pokemon1]);
+
+      // Act clear search
+      homeController.onSearchChanged('');
+
+      // Assert clear search
+      expect(homeController.state.searchResult, isNull);
+    });
   });
 }

@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_meedu/consumer.dart';
 import 'package:flutter_meedu/provider/filters.dart';
 import 'package:poke_test/presentation/globals/common/widgets/app_state_wrapper_gw.dart';
+import 'package:poke_test/presentation/globals/common/widgets/star_switch_gw.dart';
 import 'package:poke_test/presentation/globals/controllers/settings/settings_gc.dart';
 import 'package:poke_test/presentation/globals/extensions/widgets_ext.dart';
 import 'package:poke_test/presentation/modules/home/controller/home_controller.dart';
@@ -48,9 +49,12 @@ class HomePage extends StatelessWidget {
                   24.h,
 
                   Row(
+                    mainAxisAlignment: .spaceBetween,
                     children: [
                       Text(
-                        'AVAILABLE POKÉMON ($resultsLength-$totalCount)',
+                        pokemonState.showFavoritesOnly
+                            ? 'Favoritos (${pokemonState.favorites.length})'
+                            : 'POKÉMON Disponibles ($resultsLength-$totalCount)',
                         style: TextStyle(
                           color: isDarkMode
                               ? AppColors.darkTextPrimary
@@ -59,12 +63,49 @@ class HomePage extends StatelessWidget {
                           letterSpacing: .5,
                         ),
                       ),
+                      StarSwitchGW(
+                        value: pokemonState.showFavoritesOnly,
+                        onChanged: (value) {
+                          homeProvider.read().toggleShowFavoritesOnly();
+                        },
+                      ),
                     ],
                   ),
                   16.h,
 
-                  // Renderizado condicional limpio de la grilla filtrada o paginada
-                  if (pokemonState.pokemonResponse != null)
+                  if (pokemonState.showFavoritesOnly)
+                    if (pokemonState.searchResult != null)
+                      HomeBodyW(result: pokemonState.searchResult)
+                    else if (pokemonState.favorites.isEmpty)
+                      Center(
+                        child: Column(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                            const SizedBox(height: 40),
+                            Icon(
+                              Icons.star_border,
+                              size: 64,
+                              color: isDarkMode
+                                  ? Colors.white30
+                                  : Colors.black26,
+                            ),
+                            const SizedBox(height: 16),
+                            Text(
+                              'Aún no tienes favoritos',
+                              style: TextStyle(
+                                fontSize: 16,
+                                color: isDarkMode
+                                    ? Colors.white70
+                                    : Colors.black54,
+                                fontWeight: .w500,
+                              ),
+                            ),
+                          ],
+                        ),
+                      )
+                    else
+                      HomeBodyW(result: pokemonState.favorites)
+                  else if (pokemonState.pokemonResponse != null)
                     if (pokemonState.searchResult != null &&
                         pokemonState.searchResult!.isNotEmpty)
                       HomeBodyW(result: pokemonState.searchResult)

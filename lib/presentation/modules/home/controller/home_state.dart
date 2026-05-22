@@ -16,6 +16,7 @@ abstract class HomeState with _$HomeState {
     @Default(0) int offset,
     @Default(false) bool searchLoading,
     @Default([]) List<PokemonModel> favorites,
+    @Default(false) bool showFavoritesOnly,
     PokemonResponseModel? pokemonResponse,
     List<PokemonModel>? searchResult,
   }) = _HomeState;

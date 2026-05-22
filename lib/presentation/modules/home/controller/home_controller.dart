@@ -45,6 +45,8 @@ class HomeController extends StateNotifier<HomeState> {
   }
 
   Future<void> loadMorePokemons() async {
+    if (state.showFavoritesOnly) return;
+
     final currentResponse = state.pokemonResponse;
 
     if (state.isLoadMore ||
@@ -89,6 +91,14 @@ class HomeController extends StateNotifier<HomeState> {
       return;
     }
 
+    if (state.showFavoritesOnly) {
+      final localFiltered = state.favorites.where((pokemon) {
+        return pokemon.name.toLowerCase().contains(query.toLowerCase().trim());
+      }).toList();
+      state = state.copyWith(searchResult: localFiltered);
+      return;
+    }
+
     final currentResponse = state.pokemonResponse;
     if (currentResponse == null) return;
 
@@ -97,6 +107,14 @@ class HomeController extends StateNotifier<HomeState> {
     }).toList();
 
     state = state.copyWith(searchResult: localFiltered);
+  }
+
+  void toggleShowFavoritesOnly() {
+    state = state.copyWith(
+      showFavoritesOnly: !state.showFavoritesOnly,
+      search: '',
+      searchResult: null,
+    );
   }
 
   Future<void> searchPokemonFromAPI() async {
