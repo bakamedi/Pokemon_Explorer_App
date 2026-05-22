@@ -42,7 +42,7 @@ class ItemHomeW extends StatelessWidget {
                 ),
               ],
             ),
-            padding: const .all(16),
+            padding: const .all(12),
             child: Column(
               crossAxisAlignment: .start,
               children: [
@@ -98,7 +98,7 @@ class ItemHomeW extends StatelessWidget {
                   ],
                 ),
 
-                16.h,
+                10.h,
 
                 Text(
                   pokemon.name.toUpperCase(),

@@ -53,7 +53,7 @@ class _HomeBodyWState extends ConsumerState<HomeBodyW> {
         crossAxisCount: 2,
         mainAxisSpacing: 16,
         crossAxisSpacing: 16,
-        childAspectRatio: 0.9,
+        childAspectRatio: 1.05,
       ),
       itemCount: results.length + (isLoadMore ? 2 : 0),
       itemBuilder: (context, index) {

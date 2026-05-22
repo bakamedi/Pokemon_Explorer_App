@@ -24,8 +24,8 @@ void main() {
     // Stub the mock router methods. GoRouter methods return void, so we just use when(...)
     when(() => mockGoRouter.push(any(), extra: any(named: 'extra'))).thenAnswer((_) async => null);
     when(() => mockGoRouter.pushReplacement(any(), extra: any(named: 'extra'))).thenAnswer((_) async => null);
-    when(() => mockGoRouter.go(any(), extra: any(named: 'extra'))).thenAnswer((_) => null);
-    when(() => mockGoRouter.pop()).thenAnswer((_) => null);
+    when(() => mockGoRouter.go(any(), extra: any(named: 'extra'))).thenAnswer((_) {});
+    when(() => mockGoRouter.pop()).thenAnswer((_) {});
 
     // Call the RouterUtil methods
     RouterUtil.push('/test-route', extra: 'test-extra');
@@ -43,13 +43,11 @@ void main() {
   testWidgets('RouterUtil.context returns the current context of navigatorKey', (WidgetTester tester) async {
     final navKey = navigatorKeyGC.read().state.navigatorKey!;
     
-    BuildContext? capturedContext;
     await tester.pumpWidget(
       MaterialApp(
         navigatorKey: navKey,
         home: Builder(
           builder: (context) {
-            capturedContext = context;
             return const SizedBox();
           },
         ),

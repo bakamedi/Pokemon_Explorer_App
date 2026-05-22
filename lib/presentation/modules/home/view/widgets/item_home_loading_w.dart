@@ -33,7 +33,7 @@ class ItemHomeLoadingW extends StatelessWidget {
               color: skeletonColor,
               borderRadius: .circular(20),
             ),
-            padding: const .all(16),
+            padding: const .all(12),
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
@@ -47,7 +47,7 @@ class ItemHomeLoadingW extends StatelessWidget {
                   ),
                 ),
 
-                16.h,
+                10.h,
 
                 Container(
                   width: 100.rw,
