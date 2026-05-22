@@ -61,7 +61,11 @@ class _HomeBodyWState extends ConsumerState<HomeBodyW> {
           return const ItemHomeLoadingW();
         }
 
-        return ItemHomeW(pokemon: results[index]);
+        final pokemon = results[index];
+        return ItemHomeW(
+          key: ValueKey(pokemon.name),
+          pokemon: pokemon,
+        );
       },
     ).expanded;
   }

@@ -86,6 +86,7 @@ El proyecto sigue los principios de **Clean Architecture**, permitiendo una sepa
   <img src="assets/images_for_git/splash.png" alt="Demo del splash" width="250"/>
   <img src="assets/images_for_git/login.png" alt="Demo del login" width="250"/>
   <img src="assets/images_for_git/home.png" alt="Demo del home" width="250"/>
+  <img src="assets/images_for_git/favorite.png" alt="Demo del favorite" width="250"/>
   <img src="assets/images_for_git/pokemon_detail.png" alt="Demo del pokemon_detail" width="250"/>
   <img src="assets/images_for_git/settings.png" alt="Demo del settings" width="250"/>
   <img src="assets/images_for_git/close_session.png" alt="Demo del close_session" width="250"/>
