@@ -23,6 +23,9 @@ class HomeSearchW extends StatelessWidget {
             onChanged: (value) {
               homeProvider.read().onSearchChanged(value);
             },
+            onSubmitted: (_) {
+              homeProvider.read().searchPokemonFromAPI();
+            },
             textInputAction: .search,
             decoration: InputDecoration(
               hintText: 'Buscar Pokémon por nombre o ID',

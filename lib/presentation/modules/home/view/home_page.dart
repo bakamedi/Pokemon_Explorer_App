@@ -75,7 +75,15 @@ class HomePage extends StatelessWidget {
 
                   if (pokemonState.showFavoritesOnly)
                     if (pokemonState.searchResult != null)
-                      HomeBodyW(result: pokemonState.searchResult)
+                      if (pokemonState.searchResult!.isNotEmpty)
+                        HomeBodyW(result: pokemonState.searchResult)
+                      else
+                        _buildNoResultsWidget(
+                          context,
+                          isDarkMode,
+                          pokemonState.search,
+                          isFavorites: true,
+                        )
                     else if (pokemonState.favorites.isEmpty)
                       Center(
                         child: Column(
@@ -106,9 +114,16 @@ class HomePage extends StatelessWidget {
                     else
                       HomeBodyW(result: pokemonState.favorites)
                   else if (pokemonState.pokemonResponse != null)
-                    if (pokemonState.searchResult != null &&
-                        pokemonState.searchResult!.isNotEmpty)
-                      HomeBodyW(result: pokemonState.searchResult)
+                    if (pokemonState.searchResult != null)
+                      if (pokemonState.searchResult!.isNotEmpty)
+                        HomeBodyW(result: pokemonState.searchResult)
+                      else
+                        _buildNoResultsWidget(
+                          context,
+                          isDarkMode,
+                          pokemonState.search,
+                          isFavorites: false,
+                        )
                     else
                       HomeBodyW(result: pokemonState.pokemonResponse!.results)
                   else
@@ -124,6 +139,105 @@ class HomePage extends StatelessWidget {
           ),
         );
       },
+    );
+  }
+
+  Widget _buildNoResultsWidget(
+    BuildContext context,
+    bool isDarkMode,
+    String searchQuery, {
+    required bool isFavorites,
+  }) {
+    return Expanded(
+      child: Center(
+        child: SingleChildScrollView(
+          child: Column(
+            mainAxisAlignment: .center,
+            children: [
+              Container(
+                padding: const EdgeInsets.all(24),
+                decoration: BoxDecoration(
+                  color: isDarkMode
+                      ? AppColors.darkCard
+                      : Colors.white,
+                  shape: BoxShape.circle,
+                  boxShadow: [
+                    BoxShadow(
+                      color: isDarkMode
+                          ? Colors.black26
+                          : Colors.grey.withOpacity(0.1),
+                      blurRadius: 20,
+                      spreadRadius: 2,
+                    ),
+                  ],
+                ),
+                child: Icon(
+                  isFavorites
+                      ? Icons.star_outline_rounded
+                      : Icons.search_off_rounded,
+                  size: 80,
+                  color: AppColors.primaryRed.withOpacity(0.8),
+                ),
+              ),
+              24.h,
+              Text(
+                'No se encontraron Pokémon',
+                style: TextStyle(
+                  fontSize: 20,
+                  fontWeight: FontWeight.bold,
+                  color: isDarkMode
+                      ? AppColors.darkTextPrimary
+                      : AppColors.lightTextPrimary,
+                ),
+              ),
+              8.h,
+              Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 32.0),
+                child: Text(
+                  isFavorites
+                      ? 'No tienes ningún Pokémon favorito que coincida con "$searchQuery".'
+                      : 'No pudimos encontrar ningún Pokémon que coincida con "$searchQuery".',
+                  textAlign: .center,
+                  style: TextStyle(
+                    fontSize: 14,
+                    color: isDarkMode
+                        ? AppColors.darkTextSecondary
+                        : AppColors.lightTextSecondary,
+                  ),
+                ),
+              ),
+              if (!isFavorites) ...[
+                24.h,
+                ElevatedButton.icon(
+                  onPressed: () {
+                    homeProvider.read().searchPokemonFromAPI();
+                  },
+                  style: ElevatedButton.styleFrom(
+                    backgroundColor: AppColors.primaryRed,
+                    foregroundColor: Colors.white,
+                    padding: const EdgeInsets.symmetric(
+                      horizontal: 24,
+                      vertical: 12,
+                    ),
+                    shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(12),
+                    ),
+                    elevation: 2,
+                  ),
+                  icon: const Icon(Icons.cloud_download_rounded, size: 20),
+                  label: const Text(
+                    'Buscar en PokeAPI',
+                    style: TextStyle(
+                      fontWeight: FontWeight.bold,
+                      letterSpacing: 0.5,
+                    ),
+                  ),
+                ),
+              ],
+            ],
+          ),
+        ),
+      ),
     );
   }
 }
