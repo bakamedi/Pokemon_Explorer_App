@@ -13,7 +13,7 @@ class HomeLoadingBodyW extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Consumer(
-      builder: (_, ref, __) {
+      builder: (_, ref, _) {
         final isDarkMode = ref.select(settingsGP.select((s) => s.isDarkMode));
 
         final cardColor = isDarkMode ? AppColors.darkBackground : Colors.white;
