@@ -35,11 +35,11 @@ class ItemHomeLoadingW extends StatelessWidget {
             ),
             padding: const .all(12),
             child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
+              crossAxisAlignment: .start,
               children: [
                 // Esqueleto del contenedor de la imagen
                 Container(
-                  width: double.infinity,
+                  width: .infinity,
                   height: 100.rh,
                   decoration: BoxDecoration(
                     color: skeletonColor,

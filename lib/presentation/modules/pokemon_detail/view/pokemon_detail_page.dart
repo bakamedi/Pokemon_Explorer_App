@@ -7,13 +7,13 @@ import 'package:poke_test/presentation/globals/extensions/pokemon_detail_model_e
 import 'package:poke_test/presentation/globals/extensions/responsive_num_ext.dart';
 import 'package:poke_test/presentation/globals/extensions/widgets_ext.dart';
 import 'package:poke_test/presentation/modules/pokemon_detail/controller/pokemon_detail_controller.dart';
+import 'package:poke_test/presentation/modules/pokemon_detail/utils/toogle_favorite.dart';
 import 'package:poke_test/presentation/modules/pokemon_detail/view/widgets/pokemon_abilities_w.dart';
 import 'package:poke_test/presentation/modules/pokemon_detail/view/widgets/pokemon_artwork_w.dart';
 import 'package:poke_test/presentation/modules/pokemon_detail/view/widgets/pokemon_base_stats_w.dart';
 import 'package:poke_test/presentation/modules/pokemon_detail/view/widgets/pokemon_detail_loading_page_w.dart';
 import 'package:poke_test/presentation/modules/pokemon_detail/view/widgets/pokemon_dimensions_w.dart';
 import 'package:poke_test/presentation/modules/pokemon_detail/view/widgets/pokemon_types_w.dart';
-import 'package:poke_test/domain/responses/pokemon_response_model.dart';
 import 'package:poke_test/presentation/modules/home/controller/home_controller.dart';
 import 'package:poke_test/theme/app_colors.dart';
 
@@ -82,18 +82,9 @@ class _PokemonDetailPageState extends State<PokemonDetailPage> {
                         isFavorite ? Icons.star : Icons.star_border,
                         color: isFavorite
                             ? Colors.amber
-                            : (isDarkMode
-                                ? Colors.white70
-                                : Colors.black87),
+                            : (isDarkMode ? Colors.white70 : Colors.black87),
                       ),
-                      onPressed: () {
-                        final pokemonModel = PokemonModel(
-                          name: pokemon.name,
-                          url:
-                              'https://pokeapi.co/api/v2/pokemon/${pokemon.id}/',
-                        );
-                        homeProvider.read().toggleFavorite(pokemonModel);
-                      },
+                      onPressed: () => toogleFavorite(pokemon),
                     ),
                   ],
                 ),

@@ -80,13 +80,13 @@ class ItemHomeW extends StatelessWidget {
                         decoration: BoxDecoration(
                           color: isDarkMode
                               ? AppColors.darkTextSecondary
-                              : Colors.black.withValues(alpha: 0.08),
+                              : Colors.black.withValues(alpha: .08),
                           borderRadius: .circular(12),
                         ),
                         child: Text(
                           pokemon.pokemonNumber,
                           style: TextStyle(
-                            fontSize: 11,
+                            fontSize: 11.sp,
                             fontWeight: .bold,
                             color: isDarkMode
                                 ? AppColors.darkTextPrimary

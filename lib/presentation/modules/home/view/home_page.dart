@@ -79,9 +79,9 @@ class HomePage extends StatelessWidget {
                     else if (pokemonState.favorites.isEmpty)
                       Center(
                         child: Column(
-                          mainAxisAlignment: MainAxisAlignment.center,
+                          mainAxisAlignment: .center,
                           children: [
-                            const SizedBox(height: 40),
+                            40.h,
                             Icon(
                               Icons.star_border,
                               size: 64,
@@ -89,7 +89,7 @@ class HomePage extends StatelessWidget {
                                   ? Colors.white30
                                   : Colors.black26,
                             ),
-                            const SizedBox(height: 16),
+                            16.h,
                             Text(
                               'Aún no tienes favoritos',
                               style: TextStyle(

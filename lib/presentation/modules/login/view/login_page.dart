@@ -105,14 +105,14 @@ class LoginPage extends StatelessWidget {
                     'Ingresar',
                     style: TextStyle(
                       fontSize: 16.sp,
-                      fontWeight: .bold, // Corregido .bold
+                      fontWeight: .bold, 
                       letterSpacing: 1.0,
                     ),
                   ),
                 ),
                 16.h,
               ],
-            ).padding(.symmetric(horizontal: 24.rw)), // Corregido .symmetric
+            ).padding(.symmetric(horizontal: 24.rw)),
           ),
         );
       },
