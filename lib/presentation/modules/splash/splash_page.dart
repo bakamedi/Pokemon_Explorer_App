@@ -69,7 +69,7 @@ class _SplashPageState extends ConsumerState<SplashPage> {
             backgroundColor: Colors.white,
           ),
         ],
-      ).padding(.all(20.sp)),
+      ).center.padding(.all(20.sp)),
     );
   }
 }

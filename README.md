@@ -102,5 +102,20 @@ El proyecto sigue los principios de **Clean Architecture**, permitiendo una sepa
 
 </div>
 
+# Responsive
+
+
+<div style="display: flex; flex-wrap: wrap; gap: 10px;">
+
+  <img src="assets/images_for_git/responsive_splash.png" alt="Demo del r splash" width="250"/>
+  <img src="assets/images_for_git/responsive_login.png" alt="Demo del r login" width="250"/>
+  <img src="assets/images_for_git/responsive_home.png" alt="Demo del r home" width="250"/>
+  <img src="assets/images_for_git/responsive_pokemon_detail.png" alt="Demo del e pokemon detail" width="250"/>
+  <img src="assets/images_for_git/responsive_settings.png" alt="Demo del r settings" width="250"/>
+  <img src="assets/images_for_git/responsive_close_session.png" alt="Demo del r close session" width="250"/>
+
+
+</div>
+
 ---
 Desarrollado como parte de una prueba técnica para el rol de Desarrollador Flutter.
