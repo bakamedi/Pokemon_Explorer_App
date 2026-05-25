@@ -76,7 +76,6 @@ El proyecto sigue los principios de **Clean Architecture**, permitiendo una sepa
 
 - **Arquitectura Extendida**: Se ha refinado la estructura base proporcionada para implementar un flujo de datos más robusto mediante repositorios e inyección de dependencias.
 - **Gestión de Estados**: Se implementó un sistema centralizado de manejo de vistas (`appViewStateUtil`) para controlar estados de `loading`, `error`, `empty` y `success` de manera consistente.
-- **Pendientes (Extras)**: Por el momento, no se han implementado los puntos extra (Caché local con SharedPreferences, Tests unitarios o Dark mode), priorizando la estabilidad y la arquitectura de las funcionalidades obligatorias.
 
 ---
 # App Images
